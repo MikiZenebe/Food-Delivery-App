@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Search, Bell, Wallet, Menu, X } from "lucide-react";
+import { Search, Bell, Menu, X } from "lucide-react";
+
+import { WalletButton } from "../wallet/WalletButton";
 
 interface TopbarProps {
   onMenuClick?: () => void;
@@ -11,7 +13,7 @@ export function Topbar({ onMenuClick, mobileMenuOpen = false }: TopbarProps) {
 
   return (
     <header className="flex h-[68px] items-center justify-between gap-4 border-b border-[var(--border)] bg-[var(--background)] px-4 sm:px-6">
-      {/* Left section */}
+      {/* Left */}
       <div className="flex min-w-0 items-center gap-3">
         <button
           type="button"
@@ -39,7 +41,6 @@ export function Topbar({ onMenuClick, mobileMenuOpen = false }: TopbarProps) {
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" />
 
           <input
-            type="text"
             value={searchValue}
             onChange={(event) => setSearchValue(event.target.value)}
             placeholder="Search people, messages..."
@@ -59,14 +60,7 @@ export function Topbar({ onMenuClick, mobileMenuOpen = false }: TopbarProps) {
           <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-violet-400" />
         </button>
 
-        <button
-          type="button"
-          className="flex h-10 items-center gap-2 rounded-xl bg-violet-600 px-3 text-sm font-medium text-white transition hover:bg-violet-700"
-        >
-          <Wallet className="h-4 w-4" />
-          <span className="hidden sm:inline">Connect wallet</span>
-          <span className="sm:hidden">Connect</span>
-        </button>
+        <WalletButton />
       </div>
     </header>
   );

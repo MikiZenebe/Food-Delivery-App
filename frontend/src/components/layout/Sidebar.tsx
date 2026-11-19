@@ -6,19 +6,27 @@ import {
   Compass,
   ShieldCheck,
   Settings,
-  ChevronDown,
   Plus,
   Globe,
 } from "lucide-react";
 
 import { Logo } from "../shared/Logo";
 import { NavItem } from "./NavItem";
+import { useConnection } from "wagmi";
 
 interface SidebarProps {
   onNavigate?: () => void;
 }
 
 export function Sidebar({ onNavigate }: SidebarProps) {
+  const { address, isConnected, chain } = useConnection();
+
+  const walletLabel = address
+    ? `${address.slice(0, 6)}...${address.slice(-4)}`
+    : "Guest User";
+
+  const networkLabel = chain?.name ?? "Base Sepolia";
+
   return (
     <aside className="flex h-full w-[260px] flex-col border-r border-[var(--border)] bg-[var(--surface)]">
       {/* Brand */}
@@ -140,10 +148,18 @@ export function Sidebar({ onNavigate }: SidebarProps) {
         <div className="flex items-center justify-between rounded-xl bg-zinc-900/70 px-3 py-2.5">
           <div className="flex items-center gap-2">
             <Globe className="h-4 w-4 text-violet-400" />
-            <span className="text-xs text-zinc-300">Base Sepolia</span>
+            <span className="text-xs text-zinc-300">{networkLabel}</span>
           </div>
 
-          <span className="h-2 w-2 rounded-full bg-emerald-400" />
+          <span
+            className={`h-2 w-2 rounded-full ${
+              chain?.id === 84532
+                ? "bg-emerald-400"
+                : isConnected
+                  ? "bg-amber-400"
+                  : "bg-zinc-500"
+            }`}
+          />
         </div>
       </div>
 
@@ -153,17 +169,17 @@ export function Sidebar({ onNavigate }: SidebarProps) {
         className="flex items-center gap-3 border-t border-[var(--border)] px-4 py-4 text-left transition hover:bg-white/[0.03]"
       >
         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-violet-500/20 text-sm font-semibold text-violet-300">
-          G
+          {address ? address.slice(2, 4).toUpperCase() : "G"}
         </div>
 
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-medium text-zinc-200">
-            Guest User
+            {walletLabel}
           </p>
-          <p className="text-xs text-zinc-500">Wallet not connected</p>
+          <p className="text-xs text-zinc-500">
+            {isConnected ? "Wallet connected" : "Wallet not connected"}
+          </p>
         </div>
-
-        <ChevronDown className="h-4 w-4 text-zinc-500" />
       </button>
     </aside>
   );
