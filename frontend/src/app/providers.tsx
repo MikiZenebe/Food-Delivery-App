@@ -24,6 +24,7 @@ export default function AppProviders({ children }: AppProvidersProps) {
               accentColorForeground: "#FFFFFF",
               borderRadius: "medium",
             })}
+            modalSize="compact"
           >
             {children}
           </RainbowKitProvider>
