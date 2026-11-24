@@ -1,12 +1,16 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service.js';
+import type { HealthCheckResponse } from '@food-delivery/types';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get('health')
+  health(): HealthCheckResponse {
+    return {
+      status: 'ok',
+      timestamp: new Date(),
+    };
   }
 }
