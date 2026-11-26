@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "expo-router/entry",
   "dependencies": {
+    "@food-delivery/types": "workspace:*",
     "@expo/ui": "~58.0.29",
     "@rn-primitives/portal": "^1.5.3",
     "@tanstack/react-query": "^5.108.4",
