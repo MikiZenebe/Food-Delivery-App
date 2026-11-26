@@ -1,6 +1,6 @@
 import * as SplashScreen from "expo-splash-screen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import "./global.css";
+import "../global.css";
 
 import { AnimatedSplashOverlay } from "@/components/animated-icon";
 import AppTabs from "@/components/app-tabs";
