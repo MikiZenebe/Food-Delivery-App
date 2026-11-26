@@ -1,6 +1,5 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useColorScheme } from "react-native";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./global.css";
 
 import { AnimatedSplashOverlay } from "@/components/animated-icon";
@@ -9,13 +8,14 @@ import { PortalHost } from "@rn-primitives/portal";
 
 SplashScreen.preventAutoHideAsync();
 
+const queryClient = new QueryClient();
+
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <QueryClientProvider client={queryClient}>
       <AnimatedSplashOverlay />
       <AppTabs />
       <PortalHost />
-    </ThemeProvider>
+    </QueryClientProvider>
   );
 }
