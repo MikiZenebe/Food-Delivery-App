@@ -14,7 +14,6 @@ export default function HomeScreen() {
       api.get<HealthCheckResponse>("/health").then((res) => res.data),
   });
 
-  console.log(error);
   return (
     <View className="flex-1 items-center justify-center p-24">
       <Text className="text-4xl bg-red-500">Food Delivery</Text>
