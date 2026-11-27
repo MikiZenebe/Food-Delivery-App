@@ -6,9 +6,9 @@ import {
   timestamp,
   uuid,
 } from 'drizzle-orm/pg-core';
-import { menuItems } from './menus.js';
-import { restaurants } from './restaurants.js';
-import { users } from './users.js';
+import { menuItems } from './menus';
+import { restaurants } from './restaurants';
+import { users } from './users';
 
 export const orderStatusEnum = pgEnum('order_status', [
   'PENDING', // placed, waiting for payment,

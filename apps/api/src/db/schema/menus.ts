@@ -6,7 +6,7 @@ import {
   timestamp,
   uuid,
 } from 'drizzle-orm/pg-core';
-import { restaurants } from './restaurants.js';
+import { restaurants } from './restaurants';
 
 export const menuCategories = pgTable('menu_categories', {
   id: uuid('id').primaryKey().defaultRandom(),
